@@ -1,5 +1,10 @@
 export const state = () => ({
-  loggedIn: false
+  loggedIn: false,
+  styles: {
+    beforeLogin: {
+      homeAppBarHeight: 56
+    }
+  }
 })
 
 export const getters = {}
