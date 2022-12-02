@@ -3,11 +3,12 @@
     app
     dense
     elevation="1"
-    clipped-left
+    :clipped-left="clippedLeft"
     color="white"
   >
+    <slot name="navigation-toggle-button" />
     <nuxt-link
-      to="/"
+      :to="homePath"
       class="text-decoration-none"
     >
       <app-logo />
@@ -23,5 +24,17 @@
 
 <script>
 export default {
+  props: {
+    clippedLeft: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  data ({ $store }) {
+    return {
+      homePath: $store.state.loggedIn.homePath
+    }
+  }
 }
 </script>
