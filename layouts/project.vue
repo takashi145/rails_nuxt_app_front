@@ -11,7 +11,6 @@
       :drawer.sync="drawer"
     />
     <v-main>
-      project.vue
       <nuxt />
     </v-main>
   </v-app>
@@ -19,6 +18,7 @@
 
 <script>
 export default {
+  middleware: 'get-project-current',
   data () {
     return {
       drawer: null
