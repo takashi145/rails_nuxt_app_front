@@ -41,21 +41,19 @@
 export default {
   layout: 'before-login',
 
-  data () {
+  data ({ $store }) {
     return {
       isValid: false,
       loading: false,
-      params: { auth: { email: '', password: '' } }
+      params: { auth: { email: '', password: '' } },
+      redirectPath: $store.state.loggedIn.redirectPath
     }
   },
   methods: {
     login () {
       this.loading = true
-      setTimeout(() => {
-        this.$store.dispatch('login')
-        this.$router.replace('/')
-        this.loading = false
-      }, 1500)
+      this.$store.dispatch('login')
+      this.$router.push(this.redirectPath)
     }
   }
 }
