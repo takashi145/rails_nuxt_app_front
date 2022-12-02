@@ -6,6 +6,7 @@
       <v-form
         ref="form"
         v-model="isValid"
+        @submit.prevent="signup"
       >
         <user-form-name
           :name.sync="params.user.name"
@@ -17,6 +18,7 @@
           :password.sync="params.user.password"
         />
         <v-btn
+          type="submit"
           :disabled="!isValid"
           :loading="loading"
           block

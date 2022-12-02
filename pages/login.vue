@@ -6,6 +6,7 @@
       <v-form
         ref="form"
         v-model="isValid"
+        @submit.prevent="login"
       >
         <user-form-email
           :email.sync="params.auth.email"
@@ -21,6 +22,7 @@
           </nuxt-link>
         </v-card-actions>
         <v-btn
+          type="submit"
           :disabled="!isValid"
           :loading="loading"
           block
