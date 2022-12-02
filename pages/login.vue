@@ -46,7 +46,7 @@ export default {
       isValid: false,
       loading: false,
       params: { auth: { email: '', password: '' } },
-      redirectPath: $store.state.loggedIn.redirectPath
+      redirectPath: $store.state.loggedIn.homePath
     }
   },
   methods: {
