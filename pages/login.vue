@@ -62,7 +62,11 @@ export default {
       this.loading = false
     },
     authSuccessful (res) {
-      console.log('authSuccessful', res)
+      this.$auth.login(res)
+      // console.log('token', this.$auth.token)
+      // console.log('expires', this.$auth.expires)
+      // console.log('payload', this.$auth.payload)
+      // console.log('user', this.$auth.user)
       this.$router.push(this.redirectPath)
     },
     authFailure (res) {
