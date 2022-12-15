@@ -47,15 +47,28 @@ export default {
     return {
       isValid: false,
       loading: false,
-      params: { auth: { email: '', password: '' } },
+      params: { auth: { email: 'user0@example.com', password: 'password' } },
       redirectPath: $store.state.loggedIn.homePath
     }
   },
   methods: {
-    login () {
+    async login () {
       this.loading = true
-      this.$store.dispatch('login')
+      if (this.isValid) {
+        await this.$axios.$post('/api/v1/auth_token', this.params)
+          .then(res => this.authSuccessful(res))
+          .catch(err => this.authFailure(err))
+      }
+      this.loading = false
+    },
+    authSuccessful (res) {
+      console.log('authSuccessful', res)
       this.$router.push(this.redirectPath)
+    },
+    authFailure (res) {
+      if (res && res.status === 404) {
+        console.log(res)
+      }
     }
   }
 }
