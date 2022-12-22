@@ -57,7 +57,9 @@ export default {
       if (this.isValid) {
         await this.$axios.$post('/api/v1/auth_token', this.params)
           .then(res => this.authSuccessful(res))
-          .catch(err => this.authFailure(err))
+          .catch((err) => {
+            this.authFailure(err.response)
+          })
       }
       this.loading = false
     },
@@ -67,7 +69,8 @@ export default {
     },
     authFailure (res) {
       if (res && res.status === 404) {
-        console.log(res)
+        const msg = 'ユーザーが見つかりません'
+        return this.$store.dispatch('getToast', { msg })
       }
     }
   }

@@ -11,7 +11,7 @@ export default ({ $axios, $auth }) => {
     console.log(config)
   })
 
-  $axios.onError((e) => {
-    console.log(e.response)
-  })
+  // $axios.onError((e) => {
+  //   console.log(e.response)
+  // })
 }
