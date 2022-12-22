@@ -21,7 +21,7 @@ class Authentication {
   get user () {
     return this.store.state.user.current || {}
   }
-  
+
   setAuth ({ token, expires, user }) {
     const exp = expires * 1000
     const jwtPayload = (token) ? jwtDecode(token) : {}
@@ -32,8 +32,27 @@ class Authentication {
     this.store.dispatch('getAuthPayload', jwtPayload)
   }
 
+  // ログイン
   login (response) {
     this.setAuth(response)
+  }
+
+  resetVuex () {
+    this.setAuth({ token: null, expires: 0, user: null })
+    this.store.dispatch('getCurrentProject', null)
+    this.store.dispatch('getProjectList', [])
+  }
+
+  resolveUnauthorized (status) {
+    return (status >= 200 && status < 300) || (status === 401)
+  }
+
+  async logout () {
+    await this.$axios.$delete(
+      '/api/v1/auth_token',
+      { validateStatus: status => this.resolveUnauthorized(status) }
+    )
+    this.resetVuex()
   }
 }
 
