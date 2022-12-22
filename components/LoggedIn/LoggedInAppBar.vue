@@ -13,7 +13,6 @@
     >
       <app-logo />
     </nuxt-link>
-    <app-logo/>
     <app-title
      :class="{'hidden-mobile-and-down':isNotHomePath}"
     />
@@ -28,7 +27,9 @@
 </template>
 
 <script>
+import AppLogo from '../ui/AppLogo.vue'
 export default {
+  components: { AppLogo },
   props: {
     clippedLeft: {
       type: Boolean,

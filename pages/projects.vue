@@ -130,7 +130,7 @@ import homeImg from '~/assets/images/logged-in/home.png'
 
 export default {
   layout: 'logged-in',
-  middleware: ['get-project-list'] ,
+  middleware: ['get-project-list'],
   data () {
     return {
       homeImg,
@@ -160,7 +160,6 @@ export default {
   computed: {
     recentProjects () {
       const copyProjects = Array.from(this.$store.state.project.list)
-      console.log(copyProjects)
       return copyProjects.sort((a, b) => {
         if (a.updatedAt > b.updatedAt) { return -1 }
         if (a.updatedAt < b.updatedAt) { return 1 }

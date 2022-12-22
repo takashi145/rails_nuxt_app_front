@@ -29,6 +29,7 @@ export default {
     'plugins/auth',
     'plugins/axios',
     'plugins/my-inject',
+    'plugins/nuxt-client-init',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
