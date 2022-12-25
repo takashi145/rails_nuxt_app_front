@@ -73,6 +73,7 @@ import HomeContact from '~/components/Home/HomeContact.vue'
 import HomeCompany from '~/components/Home/HomeCompany.vue'
 
 export default {
+  middleware: ['logged-in-redirect'],
   components: {
     HomeAbout,
     HomeProducts,
