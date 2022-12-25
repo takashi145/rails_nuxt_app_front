@@ -48,7 +48,8 @@ export default {
       isValid: false,
       loading: false,
       params: { auth: { email: 'user0@example.com', password: 'password' } },
-      redirectPath: $store.state.loggedIn.homePath
+      redirectPath: $store.state.loggedIn.rememberPath,
+      loggedInHomePath: $store.state.loggedIn.homePath
     }
   },
   methods: {
@@ -66,6 +67,7 @@ export default {
     authSuccessful (res) {
       this.$auth.login(res)
       this.$router.push(this.redirectPath)
+      this.$store.dispatch('getRememberPath', this.loggedInHomePath)
     },
     authFailure (res) {
       if (res && res.status === 404) {
