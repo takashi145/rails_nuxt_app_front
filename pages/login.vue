@@ -74,6 +74,7 @@ export default {
         const msg = 'ユーザーが見つかりません'
         return this.$store.dispatch('getToast', { msg })
       }
+      return this.$my.apiErrorHandler(res)
     }
   }
 }

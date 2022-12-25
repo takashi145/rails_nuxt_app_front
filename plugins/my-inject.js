@@ -1,6 +1,7 @@
 class MyInject {
-  constructor (app) {
+  constructor (app, error) {
     this.app = app
+    this.error = error
   }
 
   pageTitle (routeName) {
@@ -19,8 +20,15 @@ class MyInject {
   projectLinkTo (id, name = 'project-id-dashboard') {
     return { name, params: { id } }
   }
+
+  apiErrorHandler (response) {
+    // ネットワークえらーの場合はresponseは存在しないため500
+    const statusCode = (response) ? response.status : 500
+    const message = (response) ? response.statusText : 'Network Error'
+    return this.error({ statusCode, message })
+  }
 }
 
-export default ({ app }, inject) => {
-  inject('my', new MyInject(app))
+export default ({ app, error }, inject) => {
+  inject('my', new MyInject(app, error))
 }
